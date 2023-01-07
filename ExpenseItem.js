@@ -1,25 +1,20 @@
 import "./ExpenseItem.css"
+import ExpenseDetails from "./ExpenseDetails";
+import ExpenseDate from "./ExpenseDate";
+import Card from "../UI/Card";
+import React from "react";
 
-function ExpenseItem(){
-
-    const expenseItem="Car Insurance";
-    const expenseDate=new Date(2020,0,5);
-    const expenseAmount=300;
-    const locationOfExpenditure='Mumbai';
-    return (
-        <div className="expense-item">
-            <div >{expenseDate.toISOString()}</div>
-            <div className="expense-item__description">
-                 <h2>{expenseItem}</h2>
-                 <div>Spent in {locationOfExpenditure}</div>
-                 <div className="expense-item__price">Rs{expenseAmount}</div>
-
-            </div>
-            
-        </div>
-    );    
+const ExpenseItem = (props) => {
     
-
+    
+    return (
+        <Card className="expense-item">
+            <ExpenseDate date={props.date}> </ExpenseDate>
+            <ExpenseDetails title={props.title} locationOfExpenditure={props.locationOfExpenditure} amount={props.amount} />
+            
+        </Card>
+    );    
 }
+
 
 export default ExpenseItem;
