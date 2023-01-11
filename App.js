@@ -1,4 +1,9 @@
-import ExpenseItem from './components/ExpenseItem';
+import React from 'react';
+//import ExpenseDate from './components/ExpenseDate';
+import ExpenseItem from './components/Expenses/ExpenseItem';
+
+import NewExpense from './components/NewExpense/NewExpense';
+
 function* jsxLoop(times, callback)
 {
     for(var i = 0; i < times; ++i)
@@ -6,7 +11,7 @@ function* jsxLoop(times, callback)
 }
 
 
-function App() {
+const App = ()=> {
   const expenses = [
     {
       id: 'e1',
@@ -31,9 +36,18 @@ function App() {
       locationOfExpenditure:"Vijayawada",
     },
   ];
+  // return React.createElement('div',{},
+  //     React.createElement(ExpenseDate,{date:expenses[0].date}),
+  //     React.createElement("div",{},
+  //     React.createElement('h1',{},'Expense 1'),
+  //     React.createElement('h1',{},'Expense 1'))  
+      
+      
+  //     );
+       
   return (
     <div>
-      <h2>Basic Expense Tracker App </h2>
+      <NewExpense/>
       {
         [...jsxLoop(expenses.length,i=>
           <ExpenseItem 
@@ -44,7 +58,7 @@ function App() {
         </ExpenseItem>
         )]
       }
-  
+    
     </div>
   );
 }
