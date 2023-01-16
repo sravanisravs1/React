@@ -6,6 +6,7 @@ const ExpenseForm = ( props )=>{
     const [enteredTitle,setEnteredTitle] = useState('');
     const [enteredAmount,setEnteredAmount] =useState('');
     const[enteredDate,setEnteredDate]=useState('');
+    const[enteredLocation,setEnteredLocation]=useState('')
     // const [userInput,setUserInput] =useState({
     //     enteredTitle:'',
     //     enteredAmount:'',
@@ -31,6 +32,9 @@ const ExpenseForm = ( props )=>{
         //     ...userInput}
         setEnteredDate(event.target.value)
         }
+    const locationHandler=(event) =>{
+        setEnteredLocation(event.target.value)
+    } 
        
     const submitHandler=(event)=>{
         event.preventDefault();
@@ -38,11 +42,13 @@ const ExpenseForm = ( props )=>{
             title:enteredTitle,
             date:new Date(enteredDate),
             amount:enteredAmount,
+            location:enteredLocation
         }
         props.onSaveExpenseData(expenseData);
         setEnteredAmount('');
         setEnteredDate('');
-        setEnteredTitle('')
+        setEnteredTitle('');
+        setEnteredLocation('')
     } 
     return <form onSubmit={submitHandler}>
         <div className="new-expense__controls">
@@ -63,10 +69,17 @@ const ExpenseForm = ( props )=>{
                 <input type="date" min="2019-01-01" max="2022-12-31"
                 value={enteredDate}
                 onChange={dateChanger}/>
-            </div>
+            {/* <div className="new-expense__control">
+                <label>Location</label>
+                <input type="text" 
+                value={enteredLocation}
+                onChange={locationHandler}/>    
+            </div> */}
             <div className="new-expense__actions">
+                <button type="button" onClick={props.onCancel}>Cancel </button>
                 <button type="submit">Add Expense</button>
             </div>
+        </div>
         </div>
     </form>
 
